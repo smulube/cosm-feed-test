@@ -3,7 +3,9 @@ var express = require('express');
 var app = express.createServer(express.logger());
 
 app.get("/", function(request, response) {
-  response.send("Hello world");
+  var format = request.params.format || "json";
+
+  response.send("Hello world as " + format);
 });
 
 var port = process.env.PORT || 3000;
