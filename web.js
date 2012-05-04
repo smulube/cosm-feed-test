@@ -1,6 +1,13 @@
-var express = require('express');
+var express = require('express'),
+    Handlebars = require('handlebars');
 
 var app = express.createServer(express.logger());
+
+require('express-handlebars')(app, Handlebars);
+
+app.configure(function() {
+  app.set('view engine', 'hbs');
+});
 
 // Return a randomish value (actually sinusoidal with period of about an hour),
 // with a little bit of random jitter added
@@ -123,7 +130,7 @@ app.json = function(options) {
 }
 
 app.get("/", function(request, response) {
-  response.send("Hello world");
+  response.render("index");
 });
 
 app.get("/feed", function(request, response) {

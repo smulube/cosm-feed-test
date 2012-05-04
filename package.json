@@ -6,6 +6,8 @@
     "npm": "1.1.9"
   },
   "dependencies": {
-    "express": "2.5.9"
+    "express": "2.5.9",
+    "handlebars": "1.0.5beta",
+    "express-handlebars": "0.0.1"
   }
 }
