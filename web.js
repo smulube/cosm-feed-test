@@ -2,6 +2,14 @@ var express = require('express');
 
 var app = express.createServer(express.logger());
 
+// Return a randomish value (actually sinusoidal with period of about an hour),
+// with a little bit of random jitter added
+app.random_value = function() {
+  var date = new Date(),
+      random_offset = (Math.random() - 0.5) * 2;
+  return (Math.sin(0.05236 * date.getMinutes()) * 20 + random_offset).toFixed(2);
+}
+
 app.content_type = function(format) {
   if (format.match(/^csv/)) {
     return "text/csv";
@@ -13,11 +21,19 @@ app.content_type = function(format) {
 }
 
 app.csv_v1 = function(options) {
-  return '0,1,2';
+  var data = [];
+  for(var i = 0; i < options.datastreams; i++) {
+    data.push(app.random_value());
+  }
+  return data.join(",");
 }
 
 app.csv_v2 = function(options) {
-  return 'stream0,0\nstream1,1\nstream2,2';
+  var data = [];
+  for(var i= 0; i < options.datastreams; i++) {
+    data.push("stream" + i + "," + app.random_value());
+  }
+  return data.join("\n");
 }
 
 app.xml = function(options) {
@@ -45,7 +61,7 @@ app.get("/feed", function(request, response) {
   var format = request.param('format', 'json'),
       options = {};
 
-  options.datastreams = parseInt(request.param('datastreams', "0"));
+  options.datastreams = parseInt(request.param('datastreams', "1"));
   options.tags = request.param('tags', '');
   options.random = request.param('random', 'true'),
 
