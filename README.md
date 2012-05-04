@@ -3,6 +3,10 @@
 This is a simple little server for returning JSON/XML/CSV for testing
 automatic feeds at Cosm (https://cosm.com).
 
+Currently the app is deployed here:
+
+http://cosm-feed-test.herokuapp.com
+
 Data can be retrieved by making a request like this:
 
     $ curl -i http://cosm-feed-test.herokuapp.com/feed?format=json&datastreams=2&location=51.2,0.023&tags=temperature
