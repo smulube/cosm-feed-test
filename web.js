@@ -70,7 +70,7 @@ app.xml = function(options) {
 
   for (var i=0; i < options.datastreams; i++) {
     if (options.random === "false") {
-      xml += '<data id="stream ' + i + '>\n';
+      xml += '<data id="stream ' + i + '">\n';
       if (options.tags) {
         var tags = options.tags.split(/,/);
         for(var j=0; j < tags.length; j++) {
@@ -80,7 +80,7 @@ app.xml = function(options) {
       xml += '<current-value>' + i + '</current-value>\n'
         + '</data>\n';
     } else {
-      xml += '<data id="stream ' + i + '>\n';
+      xml += '<data id="stream ' + i + '">\n';
 
       if (options.tags) {
         var tags = options.tags.split(/,/);
