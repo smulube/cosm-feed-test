@@ -33,7 +33,8 @@ app.xml = function(options) {
 
 app.json = function(options) {
   return JSON.stringify({ title: "Automatic Feed",
-                   description: "Description of automatic feed" });
+                   description: "Description of automatic feed",
+                   version: "1.0.0"});
 }
 
 app.get("/", function(request, response) {
